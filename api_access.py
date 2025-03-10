@@ -12,6 +12,10 @@ method_version = 'v4'
 # request format https://api.steampowered.com/<interface>/<method>/<method_version>/
 url = 'https://api.steampowered.com/' + interface + '/' + method + '/' + method_version + '/'
 
+headers = {
+    'Host': 'silverabyss6808.com'
+}
+
 request_parameters = {
     'key': api_key,
     'steamid': user,
