@@ -13,7 +13,7 @@ class Game:
         self.appid = appid
         self.name = name
     def __str__(self):
-        return f'name: {self.name}, appid: {self.appid}'
+        return f'{self.appid: 08d} {self.name}'
 class APIRequestType(Enum):
     def __init__(self, interface, method, method_version):
         self.interface = interface
@@ -98,13 +98,12 @@ def resolve_game_ids(id_list: array = []):
             for index, id in enumerate(id_list):
                 for game in all_games_sorted:
                     if (id == game['appid']):
+                        # print(str(index + 1).rjust(2, '0') + '. ' + str(game['appid']).rjust(7, '0') + ' ' + game['name'])
                         games_raw.append(Game(game['appid'], game['name']))
-                        continue
+                        break
 
-            # # remove duplicates (they came with the json) on return
-            # games = []
-            # [games.append(i) for i in games_raw if i.appid not in games]
-
+            # for ind, i in enumerate(games_raw):
+            #     print(str(ind + 1).rjust(2, '0') + '.' + str(i))
             return games_raw
 
 
@@ -117,10 +116,10 @@ def resolve_game_ids(id_list: array = []):
 
 # print(get_id_list(APIRequestType.WISHLIST_GET_ALL, {'steamid':76561199221076311}))
 
+# this part works correctly
 game_id_list = get_id_list(APIRequestType.WISHLIST_GET_ALL, {'steamid':76561199221076311})
+# this part doesnt
 games = resolve_game_ids(game_id_list)
 
-print(len(games))
-
-for ind, i in enumerate(games):
-    print(str(ind+1) + '. ' + str(i.appid) + " " + i.name)
+# for ind, i in enumerate(games):
+#     print(str(ind+1).rjust(2, '0') + '.' + str(i))
