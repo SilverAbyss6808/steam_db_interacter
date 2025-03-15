@@ -1,5 +1,5 @@
-import time
 
+import time
 import requests
 import jsonify
 import string
@@ -98,7 +98,7 @@ def resolve_game_ids(id_list: array = []):
             for index, id in enumerate(id_list):
                 for game in all_games_sorted:
                     if (id == game['appid']):
-                        # print(str(index + 1).rjust(2, '0') + '. ' + str(game['appid']).rjust(7, '0') + ' ' + game['name'])
+                        print(str(index + 1).rjust(2, '0') + '. ' + str(game['appid']).rjust(7, '0') + ' ' + game['name'])
                         games_raw.append(Game(game['appid'], game['name']))
                         break
 
